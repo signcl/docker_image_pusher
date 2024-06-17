@@ -1,7 +1,22 @@
-# nginx
 # 支持私库
 k8s.gcr.io/kube-state-metrics/kube-state-metrics:v2.0.0
 k8s.gcr.io/kube-scheduler-amd64:v1.10.2
 # xhofe/alist:latest
 #支持指定架构
 # --platform=linux/arm64 xiaoyaliu/alist
+
+############### calico ###############
+calico/cni:v3.25.0
+calico/csi:v3.25.0
+calico/kube-controllers:v3.25.0
+calico/node-driver-registrar:v3.25.0
+calico/node:v3.25.0
+calico/pod2daemon-flexvol:v3.25.0
+calico/typha:v3.25.0
+docker.io/calico/cni:v3.25.0
+docker.io/calico/csi:v3.25.0
+docker.io/calico/kube-controllers:v3.25.0
+docker.io/calico/node-driver-registrar:v3.25.0
+docker.io/calico/node:v3.25.0
+docker.io/calico/pod2daemon-flexvol:v3.25.0
+docker.io/calico/typha:v3.25.0
