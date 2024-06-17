@@ -20,3 +20,14 @@ docker.io/calico/node-driver-registrar:v3.25.0
 docker.io/calico/node:v3.25.0
 docker.io/calico/pod2daemon-flexvol:v3.25.0
 docker.io/calico/typha:v3.25.0
+
+############### rook:v1.13.9 ###############
+registry.k8s.io/sig-storage/csi-attacher:v4.5.0
+registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.10.0
+registry.k8s.io/sig-storage/csi-provisioner:v4.0.0
+registry.k8s.io/sig-storage/csi-resizer:v1.10.0
+registry.k8s.io/sig-storage/csi-snapshotter:v7.0.1
+quay.io/ceph/ceph:v17.2.6
+quay.io/ceph/ceph:v18.2.2
+quay.io/cephcsi/cephcsi:v3.10.2
+rook/ceph:v1.13.9
