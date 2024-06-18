@@ -27,7 +27,6 @@ registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.10.0
 registry.k8s.io/sig-storage/csi-provisioner:v4.0.0
 registry.k8s.io/sig-storage/csi-resizer:v1.10.0
 registry.k8s.io/sig-storage/csi-snapshotter:v7.0.1
-quay.io/ceph/ceph:v17.2.6
 quay.io/ceph/ceph:v18.2.2
 quay.io/cephcsi/cephcsi:v3.10.2
 rook/ceph:v1.13.9
