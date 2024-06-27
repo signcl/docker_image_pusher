@@ -44,3 +44,13 @@ rook/ceph:v1.13.9
 
 ############### nginx ###############
 nginx:latest
+
+############### rancher ###############
+rancher/rancher-agent:v2.7.5
+rancher/rancher-webhook:v0.3.5
+
+############### istio ###############
+docker.io/istio/pilot:1.19.3
+istio/pilot:1.19.3
+docker.io/istio/proxyv2:1.19.3
+istio/proxyv2:1.19.3
