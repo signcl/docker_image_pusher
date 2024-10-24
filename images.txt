@@ -86,3 +86,6 @@ registry.k8s.io/ingress-nginx/kube-webhook-certgen:v20221220-controller-v1.5.1-5
 registry.k8s.io/metrics-server/metrics-server:v0.7.0
 ############### traefik ###############
 docker.io/traefik:v2.10.5
+
+############### clash ###############
+centralx/clash:1.18.0
