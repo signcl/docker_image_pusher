@@ -5,6 +5,10 @@
 #支持指定架构
 #--platform=linux/arm64 xiaoyaliu/alist
 
+
+############### clickhouse ###############
+yandex/clickhouse-server:latest
+
 ############### calico ###############
 calico/cni:v3.25.0
 calico/csi:v3.25.0
