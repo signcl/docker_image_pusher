@@ -67,7 +67,7 @@ jobs:
             if echo "$line" | grep -q '^\s*#'; then
                 continue
             fi
-            
+
             # 获取镜像的完整名称，例如kasmweb/nginx:1.25.3（命名空间/镜像名:版本号）
             image=$(echo "$line" | awk '{print $NF}')
             # 将@sha256:等字符删除
@@ -84,7 +84,7 @@ jobs:
             # 获取镜像名例如nginx
             image_name=$(echo "$image_name_tag" | awk -F':' '{print $1}')
             echo "image_name: $image_name"
-            
+
             # 如果镜像存在于数组中，则添加temp_map
             if [[ -n "${temp_map[$image_name]}" ]]; then
                  # 如果temp_map已经存在镜像名，判断是不是同一命名空间
@@ -95,19 +95,17 @@ jobs:
             else
                 # 存镜像的命名空间
                 temp_map[$image_name]=$name_space
-            fi       
+            fi
         done < images.txt
-        
-        
+
+
         while IFS= read -r line || [ -n "$line" ]; do
             # 忽略空行与注释
             [[ -z "$line" ]] && continue
             if echo "$line" | grep -q '^\s*#'; then
                 continue
             fi
-        
-            echo "docker pull $line"
-            docker pull $line
+
             platform=$(echo "$line" | awk -F'--platform[ =]' '{if (NF>1) print $2}' | awk '{print $1}')
             echo "platform is $platform"
             # 如果存在架构信息 将架构信息拼到镜像名称前面
@@ -126,7 +124,7 @@ jobs:
             name_space=$(echo "$image" | awk -F'/' '{if (NF==3) print $2; else if (NF==2) print $1; else print ""}')
             # 获取镜像名例  例如nginx
             image_name=$(echo "$image_name_tag" | awk -F':' '{print $1}')
-        
+
             name_space_prefix=""
             # 如果镜像名重名
             if [[ -n "${duplicate_images[$image_name]}" ]]; then
@@ -135,10 +133,22 @@ jobs:
                   name_space_prefix="${name_space}_"
                fi
             fi
-            
+
             # 将@sha256:等字符删除
             image_name_tag="${image_name_tag%%@*}"
             new_image="$ALIYUN_REGISTRY/$ALIYUN_NAME_SPACE/$platform_prefix$name_space_prefix$image_name_tag"
+
+            # 检查镜像是否已存在于阿里云仓库
+            echo "检查镜像是否已存在: $new_image"
+            if docker manifest inspect "$new_image" >/dev/null 2>&1; then
+                echo "✓ 镜像已存在于阿里云仓库，跳过: $new_image"
+                continue
+            else
+                echo "✗ 镜像不存在，开始下载和上传: $new_image"
+            fi
+
+            echo "docker pull $line"
+            docker pull $line
             echo "docker tag $image $new_image"
             docker tag $image $new_image
             echo "docker push $new_image"
@@ -152,6 +162,6 @@ jobs:
             echo "磁盘空间清理完毕"
             echo "=============================================================================="
             df -hT
-            echo "=============================================================================="     
-            
+            echo "=============================================================================="
+
         done < images.txt
