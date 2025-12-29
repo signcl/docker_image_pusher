@@ -5,8 +5,15 @@
 #支持指定架构
 #--platform=linux/arm64 xiaoyaliu/alist
 
+############### hami ###############
+bougou/hami:v2.7.0
+docker.io/bougou/hami:v2.7.0
+docker.io/projecthami/hami:v2.7.0
+projecthami/hami-webui-be-oss:main
+projecthami/hami-webui-fe-oss:main
+projecthami/hami:v2.7.0
 
-############### clickhouse ###############
+############### clickhouse ##########
 yandex/clickhouse-server:latest
 
 ############### calico ###############
