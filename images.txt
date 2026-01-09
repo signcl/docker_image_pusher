@@ -1,22 +1,64 @@
-#支持私库
-#k8s.gcr.io/kube-state-metrics/kube-state-metrics:v2.0.0
-#k8s.gcr.io/kube-scheduler-amd64:v1.10.2
-#xhofe/alist:latest
-#支持指定架构
-#--platform=linux/arm64 xiaoyaliu/alist
+# ============================================================
+# Docker 镜像列表
+# 更新时间: 2025-01-09
+# 说明:
+# - 支持 # 开头的注释
+# - 支持 --platform=linux/arm64 指定架构
+# - 同一镜像的不同版本请按版本号排序
+# ============================================================
 
-############### hami ###############
-bougou/hami:v2.7.0
-docker.io/bougou/hami:v2.7.0
-docker.io/projecthami/hami:v2.7.0
-projecthami/hami-webui-be-oss:main
-projecthami/hami-webui-fe-oss:main
-projecthami/hami:v2.7.0
 
-############### clickhouse ##########
+# ============================================================
+# 基础工具镜像
+# ============================================================
+busybox:1.31.1
+busybox:latest
+nginx:latest
+curlimages/curl:7.85.0
+nicolaka/netshoot:latest
+
+
+# ============================================================
+# 数据库相关
+# ============================================================
+
+## MySQL
+bitnami/mysql:8.0.31-debian-11-r30
+bitnamilegacy/mysql:8.0.31-debian-11-r30
+
+## PostgreSQL
+bitnamilegacy/postgresql:17.3.0-debian-12-r1
+
+## Redis / Valkey
+bitnami/redis:7.0.8-debian-11-r0
+bitnamilegacy/redis:7.0.8-debian-11-r0
+bitnamilegacy/valkey:8.0.2-debian-12-r2
+oliver006/redis_exporter:v1.80.0
+
+## ClickHouse
+bitnamilegacy/clickhouse:25.2.1-debian-12-r0
 yandex/clickhouse-server:latest
 
-############### calico ###############
+## InfluxDB
+influxdb:1.8.10-alpine
+
+
+# ============================================================
+# 对象存储
+# ============================================================
+bitnami/minio:2024.12.18-debian-12-r1
+bitnamilegacy/minio:2024.12.18-debian-12-r1
+
+
+# ============================================================
+# 消息队列 & 协调服务
+# ============================================================
+bitnamilegacy/zookeeper:3.9.3-debian-12-r8
+
+
+# ============================================================
+# Kubernetes 网络 - Calico (v3.25.0)
+# ============================================================
 calico/cni:v3.25.0
 calico/csi:v3.25.0
 calico/kube-controllers:v3.25.0
@@ -24,79 +66,223 @@ calico/node-driver-registrar:v3.25.0
 calico/node:v3.25.0
 calico/pod2daemon-flexvol:v3.25.0
 calico/typha:v3.25.0
-docker.io/calico/cni:v3.25.0
-docker.io/calico/csi:v3.25.0
-docker.io/calico/kube-controllers:v3.25.0
-docker.io/calico/node-driver-registrar:v3.25.0
-docker.io/calico/node:v3.25.0
-docker.io/calico/pod2daemon-flexvol:v3.25.0
-docker.io/calico/typha:v3.25.0
-nicolaka/netshoot:latest
 
-############### rook:v1.12.11 ###############
-registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.8.0
-registry.k8s.io/sig-storage/csi-resizer:v1.8.0
-registry.k8s.io/sig-storage/csi-provisioner:v3.5.0
-registry.k8s.io/sig-storage/csi-snapshotter:v6.2.2
-registry.k8s.io/sig-storage/csi-attacher:v4.3.0
-quay.io/ceph/ceph:v17.2.6
-quay.io/cephcsi/cephcsi:v3.9.0
+
+# ============================================================
+# Kubernetes 网络 - Calico (v3.30.3)
+# ============================================================
+calico/apiserver:v3.30.3
+calico/cni:v3.30.3
+calico/csi:v3.30.3
+calico/goldmane:v3.30.3
+calico/kube-controllers:v3.30.3
+calico/node-driver-registrar:v3.30.3
+calico/node:v3.30.3
+calico/pod2daemon-flexvol:v3.30.3
+calico/typha:v3.30.3
+calico/whisker-backend:v3.30.3
+calico/whisker:v3.30.3
+quay.io/tigera/operator:v1.38.6
+
+
+# ============================================================
+# Kubernetes 存储 - Rook Ceph
+# ============================================================
+
+## Rook Operator
 rook/ceph:v1.12.11
-
-############### rook:v1.13.9 ###############
-registry.k8s.io/sig-storage/csi-attacher:v4.5.0
-registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.10.0
-registry.k8s.io/sig-storage/csi-provisioner:v4.0.0
-registry.k8s.io/sig-storage/csi-resizer:v1.10.0
-registry.k8s.io/sig-storage/csi-snapshotter:v7.0.1
-quay.io/ceph/ceph:v18.2.2
-quay.io/cephcsi/cephcsi:v3.10.2
 rook/ceph:v1.13.9
+rook/ceph:v1.17.8
 
-############### nginx ###############
-nginx:latest
+## Ceph 镜像
+quay.io/ceph/ceph:v17.2.6
+quay.io/ceph/ceph:v18.2.2
+quay.io/ceph/ceph:v19.2.3
 
-############### rancher ###############
-rancher/rancher-agent:v2.7.5
-rancher/rancher-webhook:v0.3.5
-rancher/shell:v0.1.20
-rancher/fleet-agent:v0.7.1
+## Ceph CSI
+quay.io/cephcsi/cephcsi:v3.9.0
+quay.io/cephcsi/cephcsi:v3.10.2
+quay.io/cephcsi/cephcsi:v3.14.2
 
-############### istio ###############
-docker.io/istio/pilot:1.19.3
+
+# ============================================================
+# Kubernetes CSI 驱动组件
+# ============================================================
+
+## CSI Attacher
+registry.k8s.io/sig-storage/csi-attacher:v4.3.0
+registry.k8s.io/sig-storage/csi-attacher:v4.5.0
+registry.k8s.io/sig-storage/csi-attacher:v4.8.1
+
+## CSI Node Driver Registrar
+registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.8.0
+registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.10.0
+registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.13.0
+
+## CSI Provisioner
+registry.k8s.io/sig-storage/csi-provisioner:v3.5.0
+registry.k8s.io/sig-storage/csi-provisioner:v4.0.0
+registry.k8s.io/sig-storage/csi-provisioner:v5.2.0
+
+## CSI Resizer
+registry.k8s.io/sig-storage/csi-resizer:v1.8.0
+registry.k8s.io/sig-storage/csi-resizer:v1.10.0
+registry.k8s.io/sig-storage/csi-resizer:v1.13.2
+
+## CSI Snapshotter
+registry.k8s.io/sig-storage/csi-snapshotter:v6.2.2
+registry.k8s.io/sig-storage/csi-snapshotter:v7.0.1
+registry.k8s.io/sig-storage/csi-snapshotter:v8.2.1
+
+
+# ============================================================
+# 服务网格 - Istio
+# ============================================================
+
+## Istio v1.19.3
 istio/pilot:1.19.3
-docker.io/istio/proxyv2:1.19.3
 istio/proxyv2:1.19.3
 
-############### cert-manager ###############
-imroc/cert-manager-webhook-dnspod:1.5.2
+## Istio v1.22.2
+istio/pilot:1.22.2
+istio/proxyv2:1.22.2
+
+
+# ============================================================
+# 证书管理 - Cert Manager
+# ============================================================
 quay.io/jetstack/cert-manager-cainjector:v1.18.2
 quay.io/jetstack/cert-manager-controller:v1.18.2
 quay.io/jetstack/cert-manager-webhook:v1.18.2
+imroc/cert-manager-webhook-dnspod:1.5.2
 
-############### kube-prometheus ###############
-busybox:1.31.1
-docker.io/curlimages/curl:7.85.0
-docker.io/grafana/grafana:11.0.0
-docker.io/library/busybox:1.31.1
-docker.io/grafana/promtail:3.0.0
-docker.io/utkuozdemir/nvidia_gpu_exporter:0.3.0
-grafana/grafana:11.0.0
-grafana/loki:2.9.2
-grafana/promtail:3.0.0
-registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.10.0
-nvcr.io/nvidia/k8s/dcgm-exporter:3.1.7-3.1.4-ubuntu20.04
-quay.io/kiwigrid/k8s-sidecar:1.26.1
+
+# ============================================================
+# 监控告警 - Prometheus Stack
+# ============================================================
+
+## Prometheus Operator (v0.74.0)
 quay.io/prometheus-operator/prometheus-config-reloader:v0.74.0
 quay.io/prometheus-operator/prometheus-operator:v0.74.0
-quay.io/prometheus/alertmanager:v0.25.0
-quay.io/prometheus/node-exporter:v1.8.0
-quay.io/prometheus/prometheus:v2.45.0
-utkuozdemir/nvidia_gpu_exporter:0.3.0
-registry.k8s.io/ingress-nginx/kube-webhook-certgen:v20221220-controller-v1.5.1-58-g787ea74b6
-registry.k8s.io/metrics-server/metrics-server:v0.7.0
-############### traefik ###############
-docker.io/traefik:v2.10.5
 
-############### clash ###############
+## Prometheus Operator (v0.76.1)
+quay.io/prometheus-operator/prometheus-config-reloader:v0.76.1
+quay.io/prometheus-operator/prometheus-operator:v0.76.1
+
+## Prometheus
+quay.io/prometheus/prometheus:v2.45.0
+quay.io/prometheus/prometheus:v2.54.1
+
+## Alertmanager
+quay.io/prometheus/alertmanager:v0.25.0
+quay.io/prometheus/alertmanager:v0.27.0
+bougou/alertmanager-webhook-adapter:v1.1.10
+
+## Exporters
+quay.io/prometheus/node-exporter:v1.8.0
+quay.io/prometheus/node-exporter:v1.8.2
+quay.io/prometheus/blackbox-exporter:v0.27.0
+bougou/iftop-exporter:v0.1.5
+bougou/iftop-exporter-k8s-helper:v0.1.5
+
+## Kube State Metrics
+registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.10.0
+registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.13.0
+
+
+# ============================================================
+# 可视化 - Grafana Stack
+# ============================================================
+
+## Grafana
+grafana/grafana:11.0.0
+grafana/grafana:11.2.0
+quay.io/kiwigrid/k8s-sidecar:1.26.1
+quay.io/kiwigrid/k8s-sidecar:1.27.4
+
+## Loki
+grafana/loki:2.9.2
+grafana/promtail:3.0.0
+
+
+# ============================================================
+# GPU 监控与管理
+# ============================================================
+
+## NVIDIA Device Plugin
+nvcr.io/nvidia/k8s-device-plugin:v0.17.4
+
+## DCGM Exporter
+nvcr.io/nvidia/k8s/dcgm-exporter:3.1.7-3.1.4-ubuntu20.04
+nvcr.io/nvidia/k8s/dcgm-exporter:4.4.0-4.5.0-ubuntu22.04
+
+## GPU Exporter
+utkuozdemir/nvidia_gpu_exporter:0.3.0
+utkuozdemir/nvidia_gpu_exporter:1.3.1
+
+## HAMI (GPU 共享)
+bougou/hami:v2.7.0
+projecthami/hami:v2.7.0
+projecthami/hami-webui-be-oss:main
+projecthami/hami-webui-fe-oss:main
+
+
+
+# ============================================================
+# Kubernetes 管理 - Rancher
+# ============================================================
+rancher/rancher-agent:v2.7.5
+rancher/rancher-agent:v2.9.1
+rancher/rancher-webhook:v0.3.5
+rancher/rancher-webhook:v0.5.1
+rancher/shell:v0.1.20
+rancher/fleet-agent:v0.7.1
+rancher/fleet-agent:v0.10.1
+
+
+# ============================================================
+# Kubernetes 组件
+# ============================================================
+
+## Ingress NGINX
+registry.k8s.io/ingress-nginx/kube-webhook-certgen:v20221220-controller-v1.5.1-58-g787ea74b6
+traefik:v2.10.5
+
+## Metrics Server
+registry.k8s.io/metrics-server/metrics-server:v0.7.0
+
+## Node Feature Discovery
+registry.k8s.io/nfd/node-feature-discovery:v0.15.3
+
+## RBAC Proxy
+gcr.io/kubebuilder/kube-rbac-proxy:v0.13.1
+
+## Event Exporter
+bitnamilegacy/kubernetes-event-exporter:1.7.0-debian-12-r46
+
+## cAdvisor
+ghcr.io/google/cadvisor:v0.53.0
+
+
+# ============================================================
+# 镜像分发加速 - Dragonfly
+# ============================================================
+dragonflyoss/dfdaemon:latest
+dragonflyoss/manager:latest
+dragonflyoss/openssl:latest
+dragonflyoss/scheduler:latest
+
+
+# ============================================================
+# 应用服务
+# ============================================================
+
+## Langfuse (LLM 可观测)
+langfuse/langfuse:3.62.1
+langfuse/langfuse-worker:3.62.1
+
+
+# ============================================================
+# 网络工具
+# ============================================================
 centralx/clash:1.18.0
