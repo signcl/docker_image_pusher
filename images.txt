@@ -23,20 +23,20 @@ nicolaka/netshoot:latest
 # ============================================================
 
 ## MySQL
-bitnami/mysql:8.0.31-debian-11-r30
-bitnamilegacy/mysql:8.0.31-debian-11-r30
+# bitnami/mysql:8.0.31-debian-11-r30
+# bitnamilegacy/mysql:8.0.31-debian-11-r30
 
 ## PostgreSQL
-bitnamilegacy/postgresql:17.3.0-debian-12-r1
+# bitnamilegacy/postgresql:17.3.0-debian-12-r1
 
 ## Redis / Valkey
-bitnami/redis:7.0.8-debian-11-r0
-bitnamilegacy/redis:7.0.8-debian-11-r0
-bitnamilegacy/valkey:8.0.2-debian-12-r2
+# bitnami/redis:7.0.8-debian-11-r0
+# bitnamilegacy/redis:7.0.8-debian-11-r0
+# bitnamilegacy/valkey:8.0.2-debian-12-r2
 oliver006/redis_exporter:v1.80.0
 
 ## ClickHouse
-bitnamilegacy/clickhouse:25.2.1-debian-12-r0
+# bitnamilegacy/clickhouse:25.2.1-debian-12-r0
 yandex/clickhouse-server:latest
 
 ## InfluxDB
@@ -46,14 +46,14 @@ influxdb:1.8.10-alpine
 # ============================================================
 # 对象存储
 # ============================================================
-bitnami/minio:2024.12.18-debian-12-r1
-bitnamilegacy/minio:2024.12.18-debian-12-r1
+# bitnami/minio:2024.12.18-debian-12-r1
+# bitnamilegacy/minio:2024.12.18-debian-12-r1
 
 
 # ============================================================
 # 消息队列 & 协调服务
 # ============================================================
-bitnamilegacy/zookeeper:3.9.3-debian-12-r8
+# bitnamilegacy/zookeeper:3.9.3-debian-12-r8
 
 
 # ============================================================
